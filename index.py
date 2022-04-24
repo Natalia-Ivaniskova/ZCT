@@ -98,15 +98,26 @@ def Products():
     cur = conn.cursor()
     cur.execute("SELECT * FROM products")
     table = cur.fetchall()
+    a = 0
     list = []
     for x in table:
+        a += 1
         list.append("<tr>")
         for y in range(3):
             list.append("<td>"+str(x[y])+"</td>")
-        #list.append("<td><input type=number min=1 id="ST"></td>")
+        if a == 1:
+            list.append("<td><input type=number min=0 id="+"ST"+" value=0></td>")
+        elif a == 2:
+            list.append("<td><input type=number min=0 id="+"SI"+" value=0></td>")
+        elif a == 3:
+            list.append("<td><input type=number min=0 id="+"KS"+" value=0></td>")
+        elif a == 4:
+            list.append("<td><input type=number min=0 id="+"KM"+" value=0></td>")
+        elif a == 5:
+            list.append("<td><input type=number min=0 id="+"AKU"+" value=0></td>")
+        
         list.append("</tr>")
     vysledny = " ".join(list)   
-
 
     return '''<!DOCTYPE html>
 <html>
@@ -225,11 +236,6 @@ def Products():
       <th>Quantity</th>
     </tr>
     ''' + vysledny +'''
-    <tr><td><input type=number min=0 id="ST" value=0></td></tr>
-    <tr><td><input type=number min=0 id="SI" value=0></td></tr>
-    <tr><td><input type=number min=0 id="KS" value=0></td></tr>
-    <tr><td><input type=number min=0 id="KM" value=0></td></tr>
-    <tr><td><input type=number min=0 id="AKU" value=0></td></tr>
   </table><br>
 
   <button type="button" onclick="buy()">Buy!</button>
@@ -244,7 +250,7 @@ var AKU = $("#AKU");
 
 function buy(){       
      $.ajax({
-		url:"http://127.0.0.1:5000/Product/add",
+		url:"http://127.0.0.1:5000/add",
 		type:'POST',
 		contentType: "application/json",
             data: JSON.stringify({"quantityST": ST.val(), "quantitySI": SI.val(), "quantityKS": KS.val(), "quantityKM": KM.val(), "quantityAKU": AKU.val()}),
