@@ -60,4 +60,4 @@ jobs:
         with:
           app-name: 'carpentereshop'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_1DBEA52103BD43418E78B6079FAA8788 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_781CA45B8A02438C84AA7E2FB97E9AED }}
