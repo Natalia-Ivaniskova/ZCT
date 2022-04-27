@@ -89,10 +89,10 @@ def index():
 @app.route('/Products')
 def Products():
     conn = psycopg2.connect(
-    host="localhost",
-    user="postgres",
-    password="mysecretpassword",
-    dbname = "product"
+    host="seconddb.c6w5z1fwdsy4.eu-central-1.rds.amazonaws.com",
+    user="seconduser",
+    password="secondpassword",
+    dbname = "seconddb"
     )
     conn.autocommit = True
     cur = conn.cursor()
@@ -384,10 +384,10 @@ def add():
     data = request.get_json(force=True)
     data_dict = dict(data)
     conn = psycopg2.connect(
-    host="localhost",
-    user="postgres",
-    password="mysecretpassword",
-    dbname = "product"
+    host="seconddb.c6w5z1fwdsy4.eu-central-1.rds.amazonaws.com",
+    user="seconduser",
+    password="secondpassword",
+    dbname = "seconddb"
     )
     conn.autocommit = True
     cur = conn.cursor()
@@ -401,8 +401,8 @@ def add():
 
 @app.route("/connect")
 def connect():
- connection = psycopg2.connect(dbname="product", user='postgres',
-password='mysecretpassword', host='localhost')
+ connection = psycopg2.connect(dbname="seconddb", user='seconduser',
+password='secondpassword', host='seconddb.c6w5z1fwdsy4.eu-central-1.rds.amazonaws.com')
  return "<h1 style='color:blue'>Connected!</h1>"
 
 if __name__ == '__main__':
